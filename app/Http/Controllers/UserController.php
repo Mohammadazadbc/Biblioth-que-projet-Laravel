@@ -24,7 +24,7 @@ class UserController extends Controller
 
         $result = $user->save();
         if($result){
-            return ["result"=>$result];
+            return $user;
         }
         else{
             return ["result" =>"Somethings went wrong"];
@@ -32,5 +32,19 @@ class UserController extends Controller
     }
     function showUser(){
         return User::all();
+    }
+
+    function Login(Request $req){
+        $req->validate([
+            "email"=>"required|email",
+            "password"=>"required"
+        ]);
+        $user = User::where(["email"=>$req->email])->first();
+        if(!$user || !Hash::check($req->password, $user->password)){
+            return ["message"=>"email or password wrong"];
+        }
+        else{
+            return $user;
+        }
     }
 }
