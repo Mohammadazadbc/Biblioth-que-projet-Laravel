@@ -21,7 +21,8 @@ class UserController extends Controller
         $user->lastname = $req->lastname;
         $user->email = $req->email;
         $user->password = Hash::make($req->password);
-
+        $user->profilePic = $req->file('profilePic')->store('books');
+        $user->coverPic = $req->file('coverPic')->store('books');
         $result = $user->save();
         if($result){
             return $user;
@@ -32,6 +33,15 @@ class UserController extends Controller
     }
     function showUser(){
         return User::all();
+    }
+    function DeleteUser($id){
+        $user = User::find($id);
+        $result = $user->delete();
+        if($result){
+            return ["user has been"=>"Deleted"];
+        }else{
+            return ["user has been"=>"Not deleted"];
+        }
     }
 
     function Login(Request $req){

@@ -31,6 +31,7 @@ Route::get('bookedition/{id}', [BookController::class,'showBookEdition']);
 Route::get('bookauteur/{id}', [BookController::class,'showBookAuteur']);
 // DELETE BOOK 
 Route::delete('book/{id}', [BookController::class,'DeleteBook']);
+Route::get('book/{id}', [BookController::class,'showOneBook']);
 // SEARCH FOR A BOOK    
 Route::get('searchbook/{titre}',[BookController::class,'SearchBook']);
 
@@ -62,3 +63,4 @@ Route::delete('auteur/{id}',[AutheurController::class,'DeleteAuteur']);
 Route::post('users', [UserController::class,'Register']);
 Route::get('users', [UserController::class,'showUser']);
 Route::post('login', [UserController::class,'Login']);
+Route::delete('users/{id}', [UserController::class,'DeleteUser']);

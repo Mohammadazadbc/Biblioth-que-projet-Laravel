@@ -13,6 +13,7 @@ class BookController extends Controller
         $book = new Book();
         $book->titre = $req->titre;
         $book->publishDate = $req->publishDate;
+        $book->description = $req->description;
         $book->coverImg = $req->file('coverImg')->store('books');
         $book->ISBNNumber =  $req->ISBNNumber;
         $result = $book->save();
@@ -50,5 +51,8 @@ class BookController extends Controller
     }
     function SearchBook($titre){
         return Book::where("titre","like","%".$titre."%")->get();
+    }
+    function showOneBook($id){
+        return Book::find($id);
     }
 }
