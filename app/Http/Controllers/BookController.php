@@ -55,4 +55,10 @@ class BookController extends Controller
     function showOneBook($id){
         return Book::find($id);
     }
+
+    function showBookComments($id){
+        $book = Book::find($id);
+        $commnet = $book->getComment;
+        return $commnet;
+    }
 }

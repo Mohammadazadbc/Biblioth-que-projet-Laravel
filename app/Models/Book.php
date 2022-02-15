@@ -16,4 +16,7 @@ class Book extends Model
     public function getAutheur(){
         return $this->hasMany(Auteur::class);
     }
+    public function getComment(){
+        return $this->hasMany(Comments::class);
+    }
 }

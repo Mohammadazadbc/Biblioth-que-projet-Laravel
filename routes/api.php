@@ -6,6 +6,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\EditionController;
 use App\Http\Controllers\AutheurController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,6 +35,9 @@ Route::delete('book/{id}', [BookController::class,'DeleteBook']);
 Route::get('book/{id}', [BookController::class,'showOneBook']);
 // SEARCH FOR A BOOK    
 Route::get('searchbook/{titre}',[BookController::class,'SearchBook']);
+//  SHOW A BOOK COMMNET S 
+Route::get('bookcomment/{id}',[BookController::class,'showBookComments']);
+
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 //  :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -64,3 +68,9 @@ Route::post('users', [UserController::class,'Register']);
 Route::get('users', [UserController::class,'showUser']);
 Route::post('login', [UserController::class,'Login']);
 Route::delete('users/{id}', [UserController::class,'DeleteUser']);
+
+
+
+/// Add Commnet 
+Route::post('comment/{id}', [CommentController::class,'addCommnet']);
+Route::get('comment', [CommentController::class,'showCommnet']);
